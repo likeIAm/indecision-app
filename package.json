@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "olivaluca85@gmail.com <olivaluca85@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1"
+  }
 }
