@@ -5,7 +5,8 @@ console.log('App.js is running!');
 // JSX -Javascript xml expression
 var app = {
     title: 'Indecision App',
-    subtitle: 'This is some info'
+    subtitle: 'This is some info',
+    options: ['one', 'two']
 };
 
 var template = React.createElement(
@@ -16,10 +17,15 @@ var template = React.createElement(
         null,
         app.title
     ),
-    React.createElement(
+    app.subtitle && React.createElement(
         'p',
         null,
         app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
         'ol',
@@ -37,23 +43,31 @@ var template = React.createElement(
     )
 );
 
+var user = {
+    name: 'Luca Oliva',
+    age: 32,
+    location: 'Malta'
+};
+
 var template2 = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Luca Oliva'
+        user.name
     ),
     React.createElement(
         'p',
         null,
-        'Age: 32'
+        'Age: ',
+        user.age
     ),
     React.createElement(
         'p',
         null,
-        'Location: Malta'
+        'Location: ',
+        user.location
     )
 );
 

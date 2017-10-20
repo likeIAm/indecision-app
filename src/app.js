@@ -3,13 +3,15 @@ console.log('App.js is running!');
 // JSX -Javascript xml expression
 var app = {
     title: 'Indecision App',
-    subtitle: 'This is some info'
+    subtitle: 'This is some info',
+    options: ['one', 'two']
 };
 
 var template = (
     <div>
         <h1>{app.title}</h1>
-        <p>{app.subtitle}</p>
+        {app.subtitle && <p>{app.subtitle}</p>}
+        <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
         <ol>
             <li>Item one</li>
             <li>Item two</li>
@@ -17,11 +19,18 @@ var template = (
     </div>
 );
 
+
+var user = {
+    name: 'Luca Oliva',
+    age: 32,
+    location: 'Malta'
+};
+
 var template2 = (
     <div>
-        <h1>Luca Oliva</h1>
-        <p>Age: 32</p>
-        <p>Location: Malta</p>
+        <h1>{user.name}</h1>
+        <p>Age: {user.age}</p>
+        <p>Location: {user.location}</p>
     </div>
 );
 
