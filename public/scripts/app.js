@@ -71,5 +71,31 @@ var template2 = React.createElement(
     )
 );
 
+var getFirstName = function getFirstName(x) {
+    return x.split(' ')[0];
+};
+console.log(getFirstName('Luca Oliva'));
+
+var multiplier = {
+    numbers: [1, 2, 3],
+    multiplyBy: 8,
+    multiply: function multiply() {
+        var that = this;
+        return this.numbers.map(function (number) {
+            return number * that.multiplyBy;
+        });
+    },
+    multiplyArrow: function multiplyArrow() {
+        var _this = this;
+
+        // this is the new method istance syntax
+        return this.numbers.map(function (number) {
+            return number * _this.multiplyBy;
+        });
+    }
+};
+
+console.log(multiplier.multiplyArrow());
+
 var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
