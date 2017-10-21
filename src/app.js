@@ -19,39 +19,18 @@ const template = (
     </div>
 );
 
-
-const user = {
-    name: 'Luca Oliva',
-    age: 32,
-    location: 'Malta'
-};
-
-const template2 = (
+let count = 0;
+const addOne = () => { console.log('addOne') };
+const minusOne = () => console.log('minusOne');
+const reset = () => console.log('reset');
+const templateTwo = (
     <div>
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        <h1>Count: {count}</h1>
+        <button onClick={addOne}>+1</button>
+        <button onClick={minusOne}>-1</button>
+        <button onClick={reset}>Reset</button>
     </div>
 );
 
-const getFirstName = (x) => x.split(' ')[0];
-console.log(getFirstName('Luca Oliva'));
-
-const multiplier = {
-    numbers: [1, 2, 3],
-    multiplyBy: 8,
-    multiply: function() {
-        var that = this;
-        return this.numbers.map(function (number) {
-                return number * that.multiplyBy
-            });
-    },
-    multiplyArrow() { // this is the new method istance syntax
-        return this.numbers.map((number) => number * this.multiplyBy);
-    }
-}
-
-console.log(multiplier.multiplyArrow());
-
 const appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

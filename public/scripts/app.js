@@ -43,59 +43,41 @@ var template = React.createElement(
     )
 );
 
-var user = {
-    name: 'Luca Oliva',
-    age: 32,
-    location: 'Malta'
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
 };
-
-var template2 = React.createElement(
+var minusOne = function minusOne() {
+    return console.log('minusOne');
+};
+var reset = function reset() {
+    return console.log('reset');
+};
+var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name
+        'Count: ',
+        count
     ),
     React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
+        'button',
+        { onClick: addOne },
+        '+1'
     ),
     React.createElement(
-        'p',
-        null,
-        'Location: ',
-        user.location
+        'button',
+        { onClick: minusOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'Reset'
     )
 );
 
-var getFirstName = function getFirstName(x) {
-    return x.split(' ')[0];
-};
-console.log(getFirstName('Luca Oliva'));
-
-var multiplier = {
-    numbers: [1, 2, 3],
-    multiplyBy: 8,
-    multiply: function multiply() {
-        var that = this;
-        return this.numbers.map(function (number) {
-            return number * that.multiplyBy;
-        });
-    },
-    multiplyArrow: function multiplyArrow() {
-        var _this = this;
-
-        // this is the new method istance syntax
-        return this.numbers.map(function (number) {
-            return number * _this.multiplyBy;
-        });
-    }
-};
-
-console.log(multiplier.multiplyArrow());
-
 var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
