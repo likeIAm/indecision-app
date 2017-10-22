@@ -30,22 +30,17 @@ const render = () => {
             <h1>{app.title}</h1>
             {app.subtitle && <p>{app.subtitle}</p>}
             <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-            {/*app.options.length > 0 &&
-                <ol>
-                    {app.options.forEach((option) => {
-                        return <li>{option}</li>
-                    })}
-                </ol>
-                */}
+            {1}{2}{[1,2]}
+            {[<p key="1">1</p>,<p key="2">2</p>,<p key="3">3</p>]}
             <p>{app.options.length}</p>
+            {app.options.map((option, idx) => <p key={idx}>{option}</p>)}
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+                {app.options.map((option, idx) => <li key={idx}>{option}</li>)}
             </ol>
             <button onClick={onRemoveAll}>Remove All</button>
             <form onSubmit={onSubmitForm}>
                 <input type="text" name="option" />
-                <button>Add option</button>
+                <button>Addd option</button>
             </form>
         </div>
     );
@@ -75,7 +70,7 @@ const template = (
             <li>Item one</li>
             <li>Item two</li>
         </ol>
-        <form onSubmit={submitForm}>
+        <form onSubmit={onSubmitForm}>
             <input type="text" name="option" />
             <button>Add option</button>
         </form>
