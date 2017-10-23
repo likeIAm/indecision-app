@@ -1,14 +1,33 @@
 class IndecisionApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handlePick = this.handlePick.bind(this);
+        this.state = {
+            options: ['1 kjk,', '2 gfdds', '3 kjuk']
+        };
+    }
+    handleDeleteOptions() {
+        this.setState(() => {
+            return {
+                options: []
+            };
+        });
+    }
+    handlePick() {
+        debugger;
+        const option = this.state.options[Math.floor(Math.random() * this.state.options.length)];
+        alert(option);
+    }
     render () {
         const title = 'Indecision App';
         const subTitle = 'Put your life in the hands of a computer';
-        const options = ['1 kjk,', '2 gfdds', '3 kjuk'];
 
         return (
             <div>
                 <Header title={title} subTitle={subTitle}/>
-                <Action />
-                <Options options={options}/>
+                <Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}/>
+                <Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions} />
                 <AddOption />
             </div>
         );
@@ -28,34 +47,25 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-    pickOption() {
-        alert('Picked Option');
-    }
-
     render() {
         return (
             <div>
-                <button onClick={this.pickOption}>What should I do?</button>
+                <button 
+                    onClick={this.props.handlePick}
+                    disabled={!this.props.hasOptions}
+                >
+                    What should I do?
+                </button>
             </div>
         )
     }
 }
 
 class Options extends React.Component {
-    // So the best is to bind the mehtod here in the constructor
-    constructor(props) {
-        super(props);
-        this.handleRemoveAll = this.handleRemoveAll.bind(this);
-    }
-
-    handleRemoveAll() {
-        console.log(this.props.options); // If i do like this without rebinding the method to a proper this, this is undefined when called by the event handler dispacther
-        alert('Remove All');
-    }
     render() {
         return (
             <div>
-                <button onClick={this.handleRemoveAll/*.bind(this) - but it's very expensive cause for every render I've to rebind*/}>Remove All</button>
+                <button onClick={this.props.handleDeleteOptions}>Remove All</button>
                 {
                     this.props.options.map((option) => <Option key={option} optionText={option}/>)
                 }
