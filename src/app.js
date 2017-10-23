@@ -42,13 +42,20 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    // So the best is to bind the mehtod here in the constructor
+    constructor(props) {
+        super(props);
+        this.handleRemoveAll = this.handleRemoveAll.bind(this);
+    }
+
     handleRemoveAll() {
+        console.log(this.props.options); // If i do like this without rebinding the method to a proper this, this is undefined when called by the event handler dispacther
         alert('Remove All');
     }
     render() {
         return (
             <div>
-                <button onClick={this.handleRemoveAll}>Remove All</button>
+                <button onClick={this.handleRemoveAll/*.bind(this) - but it's very expensive cause for every render I've to rebind*/}>Remove All</button>
                 {
                     this.props.options.map((option) => <Option key={option} optionText={option}/>)
                 }
