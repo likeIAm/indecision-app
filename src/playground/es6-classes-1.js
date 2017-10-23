@@ -3,16 +3,16 @@ class Person {
     this.name = name;
     this.age = age;
   }
-  getGretting() {
-    return `Hi. I am ${this.name}!`;
+  getGreetting() {
+    return `Hi, I'm ${this.name}`;
   }
   getDescription() {
     return `${this.name} is ${this.age} year(s) old.`;
   }
 }
 
-const me = new Person('Andrew Mead', 26);
+const me = new Person('Luca Oliva');
 console.log(me.getDescription());
 
 const other = new Person();
-console.log(other.getDescription());
+console.log(other.getGreetting());
