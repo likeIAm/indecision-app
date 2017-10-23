@@ -4,7 +4,7 @@ class Person {
     this.age = age;
   }
   getGreeting() {
-    return `Hi, I'm ${this.name}`;
+    return `Hi. I am ${this.name}!`;
   }
   getDescription() {
     return `${this.name} is ${this.age} year(s) old.`;
@@ -21,10 +21,12 @@ class Student extends Person {
   }
   getDescription() {
     let description = super.getDescription();
+
     if (this.hasMajor()) {
-      description += ` The major is ${this.major}`;
+      description += ` Their major is ${this.major}.`;
     }
-    console.log(description);
+
+    return description;
   }
 }
 
@@ -34,16 +36,18 @@ class Traveler extends Person {
     this.homeLocation = homeLocation;
   }
   getGreeting() {
-    let greetting = super.getGreeting();
+    let greeting = super.getGreeting();
+
     if (this.homeLocation) {
-      greetting += `. I'm from ${this.homeLocation}`;
+      greeting += ` I am visiting from ${this.homeLocation}.`;
     }
-    return greetting;
+
+    return greeting;
   }
 }
 
-const me = new Traveler('Luca Oliva', 32, 'Roveredo in Piano');
+const me = new Traveler('Andrew Mead', 26, 'Philadelphia');
 console.log(me.getGreeting());
 
-const other = new Traveler();
+const other = new Traveler(undefined, undefined, 'Nowhere');
 console.log(other.getGreeting());
