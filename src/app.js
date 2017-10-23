@@ -1,84 +1,57 @@
 console.log('App.js is running!');
 
-// JSX -Javascript xml expression
 const app = {
-    title: 'Indecision App',
-    subtitle: 'This is some info',
-    options: []
+  title: 'Indecision App',
+  subtitle: 'Put your life in the hands of a computer',
+  options: []
 };
 
-const onSubmitForm = (e) => {
-    debugger;
-    e.preventDefault();
-    //const option = document.getElementsByName('option')[0].value;
-    const option = e.target.elements.option.value;
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = '';
-        render();
-    }
+const onFormSubmit = (e) => {
+  e.preventDefault();
+
+  const option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    render();
+  }
 };
 
 const onRemoveAll = () => {
-    app.options = [];
-    render();
+  app.options = [];
+  render();
 };
 
 const onMakeDecision = () => {
-    const random = Math.floor(Math.random() * app.options.length);
-    const option = app.options[random];
-    alert(option);
-    console.log(random);
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  alert(option);
 };
+
+const appRoot = document.getElementById('app');
 
 const render = () => {
-    const template = (
-        <div>
-            <h1>{app.title}</h1>
-            {app.subtitle && <p>{app.subtitle}</p>}
-            <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-            <ol>
-                {app.options.map((option, idx) => <li key={idx}>{option}</li>)}
-            </ol>
-            <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should i do?</button>
-            <button onClick={onRemoveAll}>Remove All</button>
-            <form onSubmit={onSubmitForm}>
-                <input type="text" name="option" />
-                <button>Addd option</button>
-            </form>
-        </div>
-    );
-
-    
-    const appRoot = document.getElementById('app');
-
-    ReactDOM.render(template, appRoot);
-};
-const appRoot = document.getElementById('app');
-render();
-
-const template = (
+  const template = (
     <div>
-        <h1>{app.title}</h1>
-        {app.subtitle && <p>{app.subtitle}</p>}
-        <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
-        {/*app.options.length > 0 &&
-            <ol>
-                {app.options.forEach((option) => {
-                    return <li>{option}</li>
-                })}
-            </ol>
-            */}
-        <p>{app.options.length}</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-        <form onSubmit={onSubmitForm}>
-            <input type="text" name="option" />
-            <button>Add option</button>
-        </form>
+      <h1>{app.title}</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
+      <button onClick={onRemoveAll}>Remove All</button>
+      <ol>
+        {
+          app.options.map((option) => <li key={option}>{option}</li>)
+        }
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
     </div>
-);
+  );
 
-//ReactDOM.render(template, appRoot);
+  ReactDOM.render(template, appRoot);
+};
+
+render();
