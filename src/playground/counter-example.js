@@ -9,7 +9,6 @@ class Counter extends React.Component {
     };
   }
   componentDidMount() {
-    debugger;
     console.log('Fetch data');
     const count = parseInt(localStorage.getItem('count'));
     if (!isNaN(count)) {
@@ -17,7 +16,6 @@ class Counter extends React.Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    debugger;
     if (prevState.count !== this.state.count) {
       console.log('Save data');
       localStorage.setItem('count', this.state.count);
