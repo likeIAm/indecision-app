@@ -26,6 +26,27 @@ var Counter = function (_React$Component) {
   }
 
   _createClass(Counter, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      debugger;
+      console.log('Fetch data');
+      var count = parseInt(localStorage.getItem('count'));
+      if (!isNaN(count)) {
+        this.setState(function () {
+          return { count: count };
+        });
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      debugger;
+      if (prevState.count !== this.state.count) {
+        console.log('Save data');
+        localStorage.setItem('count', this.state.count);
+      }
+    }
+  }, {
     key: 'handleAddOne',
     value: function handleAddOne() {
       this.setState(function (prevState) {
@@ -46,12 +67,11 @@ var Counter = function (_React$Component) {
   }, {
     key: 'handleReset',
     value: function handleReset() {
-      this.setState(function (prevState) {
+      this.setState(function () {
         return {
           count: 0
         };
       });
-      //this.setState({count: 0}); // old way, in this case there are not problems cause i don't need to access the previous state - but is not the reccomanded mehtod
     }
   }, {
     key: 'render',
@@ -78,7 +98,7 @@ var Counter = function (_React$Component) {
         React.createElement(
           'button',
           { onClick: this.handleReset },
-          'Reset'
+          'reset'
         )
       );
     }
@@ -88,33 +108,3 @@ var Counter = function (_React$Component) {
 }(React.Component);
 
 ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
-// let count = 0;
-// const addOne = () => {
-//   count++;
-//   renderCounterApp();
-// };
-// const minusOne = () => {
-//   count--;
-//   renderCounterApp();
-// };
-// const reset = () => {
-//   count = 0;
-//   renderCounterApp();
-// };
-
-// const appRoot = document.getElementById('app');
-
-// const renderCounterApp = () => {
-//   const templateTwo = (
-//     <div>
-//       <h1>Count: {count}</h1>
-//       <button onClick={addOne}>+1</button>
-//       <button onClick={minusOne}>-1</button>
-//       <button onClick={reset}>reset</button>
-//     </div>
-//   );
-
-//   ReactDOM.render(templateTwo, appRoot);
-// };
-
-// renderCounterApp();
